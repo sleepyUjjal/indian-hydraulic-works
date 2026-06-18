@@ -9,15 +9,15 @@ export function Footer() {
           <div className="md:col-span-2 space-y-4">
             <div className="flex items-center gap-2">
               <div className="w-8 h-8 bg-white rounded-sm flex items-center justify-center text-deep-navy font-heading font-bold shadow-pressed">
-                HW
+                IHW
               </div>
-              <span className="font-heading font-bold text-xl">HydraulicWorks</span>
+              <span className="font-heading font-bold text-xl">Indian Hydraulic Works</span>
             </div>
             <p className="text-slate-400 max-w-sm mt-4 leading-relaxed">
-              Premium skeuomorphic industrial solutions. Engineering excellence backed by decades of tactile hydraulic experience.
+              Indian Hydraulic Works, established in 1980, is a trusted name in hydraulic repair and manufacturing. We specialize in Pump, Motor & Valve Repairing, along with Hydraulic Cylinders and Hydraulic Power Packs. With decades of experience, we are committed to delivering reliable solutions, quality workmanship, and timely service.
             </p>
           </div>
-          
+
           <div>
             <h4 className="font-heading font-bold text-lg mb-4 text-white">Services</h4>
             <ul className="space-y-3 text-slate-400">
@@ -32,13 +32,13 @@ export function Footer() {
             <ul className="space-y-3 text-slate-400">
               <li>1800-HYD-WORK</li>
               <li>info@hydraulicworks.com</li>
-              <li>Mumbai, Maharashtra</li>
+              <li>Faridabad, Haryana</li>
             </ul>
           </div>
         </div>
 
         <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between text-sm text-slate-500">
-          <p>© {new Date().getFullYear()} HydraulicWorks. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Indian Hydraulic Works. All rights reserved.</p>
           <div className="flex gap-4 mt-4 md:mt-0">
             <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
             <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
