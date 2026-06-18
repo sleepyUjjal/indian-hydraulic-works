@@ -1,8 +1,7 @@
-import { Cantarell, IBM_Plex_Sans } from "next/font/google";
+import { Plus_Jakarta_Sans, IBM_Plex_Sans } from "next/font/google";
 import "./globals.css";
 
-const cantarell = Cantarell({
-  weight: ["400", "700"],
+const plusJakartaSans = Plus_Jakarta_Sans({
   variable: "--font-heading",
   subsets: ["latin"],
 });
@@ -22,7 +21,7 @@ export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
-      className={`${cantarell.variable} ${ibmPlexSans.variable} h-full antialiased`}
+      className={`${plusJakartaSans.variable} ${ibmPlexSans.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col font-sans">{children}</body>
     </html>
