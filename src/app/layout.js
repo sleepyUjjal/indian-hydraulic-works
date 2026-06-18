@@ -17,13 +17,20 @@ export const metadata = {
   description: "Skeuomorphic, industrial grade hydraulic solutions.",
 };
 
+import { Navbar } from "@/components/layout/Navbar";
+import { Footer } from "@/components/layout/Footer";
+
 export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
       className={`${plusJakartaSans.variable} ${ibmPlexSans.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col font-sans">{children}</body>
+      <body className="min-h-full flex flex-col font-sans">
+        <Navbar />
+        {children}
+        <Footer />
+      </body>
     </html>
   );
 }
