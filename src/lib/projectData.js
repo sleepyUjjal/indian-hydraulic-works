@@ -121,6 +121,7 @@ export const PROJECTS = [
  * URL format: /projects/[slug]-[id]
  */
 export function getProjectBySlugId(slugId) {
+  if (!slugId) return null;
   // The ID is always the last 4 characters
   const id = slugId.slice(-4);
   return PROJECTS.find((p) => p.id === id) || null;

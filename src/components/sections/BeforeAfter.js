@@ -174,7 +174,7 @@ export default function BeforeAfter() {
         {/* Header */}
         <div className="text-center mb-14 sm:mb-16">
           <motion.p
-            initial={{ opacity: 0, y: 10 }} x
+            initial={{ opacity: 0, y: 10 }}
             animate={headerInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5 }}
             className="text-sm font-semibold tracking-[0.2em] uppercase text-trust-blue dark:text-sky-400 mb-4"
