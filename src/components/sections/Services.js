@@ -213,7 +213,7 @@ export default function Services() {
   return (
     <section
       ref={sectionRef}
-      className="relative py-24 sm:py-32 overflow-hidden bg-[var(--background)] transition-colors duration-300"
+      className="relative pt-24 pb-12 sm:pt-32 sm:pb-16 overflow-hidden bg-[var(--background)] transition-colors duration-300"
       aria-label="Our Services"
       id="services"
     >
