@@ -295,8 +295,8 @@ export default function Services() {
           <p className="text-[var(--text-secondary)] mb-6 text-sm sm:text-base">
             Need a custom hydraulic solution? We&apos;ll engineer it for you.
           </p>
-          <Button variant="primary" className="px-10 py-3.5 text-base">
-            <a href="#contact">Request a Consultation</a>
+          <Button href="/#contact" variant="primary" className="px-10 py-3.5 text-base">
+            Request a Consultation
           </Button>
         </motion.div>
       </div>

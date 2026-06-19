@@ -20,7 +20,7 @@ export function Navbar() {
   }, []);
 
   const navLinks = [
-    { name: "Services", href: "#services" },
+    { name: "Services", href: "/#services" },
     { name: "Projects", href: "/projects" },
     { name: "About", href: "#" },
   ];
@@ -92,7 +92,7 @@ export function Navbar() {
               </AnimatePresence>
             </button>
 
-            <Button variant="primary" className="py-2 px-6">Get Quote</Button>
+            <Button href="/#contact" variant="primary" className="py-2 px-6">Get Quote</Button>
           </div>
 
           <div className="flex items-center gap-3 md:hidden">
@@ -147,7 +147,9 @@ export function Navbar() {
                   {link.name}
                 </a>
               ))}
-              <Button variant="primary" className="mt-8 w-full py-4 text-lg">Get Quote</Button>
+              <Button href="/#contact" variant="primary" className="mt-8 w-full py-4 text-lg" onClick={() => setMobileMenuOpen(false)}>
+                Get Quote
+              </Button>
             </div>
           </motion.div>
         )}

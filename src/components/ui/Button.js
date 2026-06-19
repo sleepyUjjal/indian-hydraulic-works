@@ -17,8 +17,11 @@ export function Button({
     outline: "bg-transparent text-trust-blue border-2 border-trust-blue hover:bg-trust-blue/5",
   };
 
+  const isLink = Boolean(props.href);
+  const MotionComponent = isLink ? motion.a : motion.button;
+
   return (
-    <motion.button
+    <MotionComponent
       whileHover={{ scale: 1.02 }}
       whileTap={{ scale: 0.97, y: 2 }}
       className={cn(baseStyles, variants[variant], className)}
@@ -29,6 +32,6 @@ export function Button({
         <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent hover:animate-shimmer" />
       )}
       <span className="relative z-10 flex items-center gap-2">{children}</span>
-    </motion.button>
+    </MotionComponent>
   );
 }
