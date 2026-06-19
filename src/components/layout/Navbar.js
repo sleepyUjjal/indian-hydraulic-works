@@ -21,7 +21,7 @@ export function Navbar() {
 
   const navLinks = [
     { name: "Services", href: "#services" },
-    { name: "Projects", href: "#projects" },
+    { name: "Projects", href: "/projects" },
     { name: "About", href: "#" },
   ];
 
@@ -40,7 +40,7 @@ export function Navbar() {
             <div className="w-10 h-10 bg-gradient-navy rounded flex items-center justify-center text-white font-heading font-bold shadow-pressed">
               IHW
             </div>
-            <span className={`font-heading font-bold text-2xl hidden sm:block transition-colors ${scrolled ? "text-[var(--text-primary)]" : "dark:text-white text-deep-navy"}`}>Indian Hydraulic Works</span>
+            <span className={`font-heading font-bold text-2xl hidden sm:block transition-colors ${scrolled ? "text-[var(--text-primary)]" : "dark:text-white text-deep-navy"}`}><a href="/">Indian Hydraulic Works</a></span>
           </div>
 
           <div className="hidden md:flex items-center gap-8">

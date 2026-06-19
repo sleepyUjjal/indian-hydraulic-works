@@ -296,7 +296,7 @@ export default function Services() {
             Need a custom hydraulic solution? We&apos;ll engineer it for you.
           </p>
           <Button variant="primary" className="px-10 py-3.5 text-base">
-            Request a Consultation
+            <a href="#contact">Request a Consultation</a>
           </Button>
         </motion.div>
       </div>

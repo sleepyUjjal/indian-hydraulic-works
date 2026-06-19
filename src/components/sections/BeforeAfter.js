@@ -163,7 +163,7 @@ export default function BeforeAfter() {
   return (
     <section
       ref={sectionRef}
-      className="relative py-24 sm:py-32 overflow-hidden bg-[var(--background)] transition-colors duration-300"
+      className="relative pt-12 pb-12 sm:pt-16 sm:pb-16 overflow-hidden bg-[var(--background)] transition-colors duration-300"
       aria-label="Repair Results"
       id="repairs"
     >

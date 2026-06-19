@@ -5,10 +5,10 @@ export function Input({ className, type = "text", ...props }) {
     <input
       type={type}
       className={cn(
-        "flex h-12 w-full rounded-lg bg-slate-200/50 px-4 py-2 text-base text-slate-900",
-        "shadow-inset-deep border border-steel-light/30",
-        "focus:outline-none focus:ring-2 focus:ring-trust-blue/50 focus:bg-white transition-all",
-        "placeholder:text-slate-500",
+        "flex h-12 w-full rounded-lg px-4 py-2 text-base transition-all",
+        "bg-[var(--surface)] text-[var(--text-primary)] border border-[var(--border-color)]",
+        "focus:outline-none focus:ring-2 focus:ring-trust-blue/50 focus:border-trust-blue/40",
+        "placeholder:text-[var(--text-muted)]",
         className
       )}
       {...props}
@@ -20,10 +20,10 @@ export function Textarea({ className, ...props }) {
   return (
     <textarea
       className={cn(
-        "flex min-h-[120px] w-full rounded-lg bg-slate-200/50 px-4 py-3 text-base text-slate-900",
-        "shadow-inset-deep border border-steel-light/30",
-        "focus:outline-none focus:ring-2 focus:ring-trust-blue/50 focus:bg-white transition-all",
-        "placeholder:text-slate-500 resize-y",
+        "flex min-h-[120px] w-full rounded-lg px-4 py-3 text-base transition-all",
+        "bg-[var(--surface)] text-[var(--text-primary)] border border-[var(--border-color)]",
+        "focus:outline-none focus:ring-2 focus:ring-trust-blue/50 focus:border-trust-blue/40",
+        "placeholder:text-[var(--text-muted)] resize-y",
         className
       )}
       {...props}
