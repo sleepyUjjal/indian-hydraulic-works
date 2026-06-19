@@ -41,12 +41,12 @@ function PressureGauge({ preset, onCycle }) {
         transition={{ duration: 0.8 }}
       />
 
-      <svg viewBox="0 0 200 200" className="w-full h-full drop-shadow-2xl">
+      <svg viewBox="0 0 200 200" className="w-full h-full drop-shadow-2xl dark:drop-shadow-2xl drop-shadow-lg">
         {/* Track ring */}
         <circle
           cx="100" cy="100" r={radius}
           fill="none"
-          stroke="rgba(148,163,184,0.1)"
+          stroke="rgba(148,163,184,0.2)"
           strokeWidth="8"
           strokeDasharray={`${arcLength} ${circumference}`}
           strokeDashoffset={0}
@@ -84,8 +84,8 @@ function PressureGauge({ preset, onCycle }) {
         })}
 
         {/* Center hub */}
-        <circle cx="100" cy="100" r="24" fill="url(#hubGradient)" />
-        <circle cx="100" cy="100" r="18" fill="url(#hubInner)" />
+        <circle cx="100" cy="100" r="24" fill="url(#hubGradient)" className="dark:opacity-100 opacity-90" />
+        <circle cx="100" cy="100" r="18" fill="url(#hubInner)" className="dark:opacity-100 opacity-90" />
 
         {/* Animated needle */}
         <motion.g
@@ -131,7 +131,7 @@ function PressureGauge({ preset, onCycle }) {
 
       {/* Digital readout — animates on preset change */}
       <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1">
-        <div className="bg-deep-navy/80 border border-slate-700/50 rounded px-3 py-0.5 backdrop-blur-sm">
+        <div className="bg-deep-navy/80 dark:bg-deep-navy/80 bg-white/80 border dark:border-slate-700/50 border-slate-300/50 rounded px-3 py-0.5 backdrop-blur-sm">
           <motion.span
             key={preset.psi}
             initial={{ opacity: 0, y: 6 }}
@@ -155,8 +155,8 @@ function PressureGauge({ preset, onCycle }) {
 
       {/* Click hint ring */}
       <motion.div
-        className="absolute inset-0 rounded-full border-2 border-white/0"
-        whileHover={{ borderColor: "rgba(255,255,255,0.1)", scale: 1.04 }}
+        className="absolute inset-0 rounded-full border-2 dark:border-white/0 border-slate-900/0"
+        whileHover={{ borderColor: "rgba(100,116,139,0.2)", scale: 1.04 }}
         transition={{ duration: 0.3 }}
       />
     </div>
@@ -220,16 +220,16 @@ function MetricPanel({ label, value, unit, delay, className, accentColor }) {
       whileHover={{ scale: 1.08, y: -4 }}
       whileTap={{ scale: 0.96 }}
       transition={{ duration: 0.6, delay, ease: "easeOut" }}
-      className={`bg-white/[0.06] backdrop-blur-lg border border-white/[0.1] rounded-lg px-4 py-3 cursor-pointer
-        shadow-[0_4px_20px_rgba(0,0,0,0.25),inset_0_1px_0_rgba(255,255,255,0.08)]
-        hover:shadow-[0_8px_30px_rgba(0,0,0,0.35),inset_0_1px_0_rgba(255,255,255,0.15)]
-        hover:bg-white/[0.1] transition-colors duration-300 ${className}`}
+      className={`backdrop-blur-lg rounded-lg px-4 py-3 cursor-pointer transition-colors duration-300
+        dark:bg-white/[0.06] dark:border-white/[0.1] dark:shadow-[0_4px_20px_rgba(0,0,0,0.25),inset_0_1px_0_rgba(255,255,255,0.08)] dark:hover:shadow-[0_8px_30px_rgba(0,0,0,0.35),inset_0_1px_0_rgba(255,255,255,0.15)] dark:hover:bg-white/[0.1]
+        bg-white/90 border border-slate-200/80 shadow-[0_4px_20px_rgba(15,23,42,0.08),inset_0_1px_0_rgba(255,255,255,0.5)] hover:shadow-[0_8px_30px_rgba(15,23,42,0.12)] hover:bg-white
+        ${className}`}
     >
-      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent rounded-t-lg" />
-      <p className="text-[10px] uppercase tracking-[0.12em] text-slate-400 mb-1">{label}</p>
+      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent dark:via-white/20 via-slate-300/50 to-transparent rounded-t-lg" />
+      <p className="text-[10px] uppercase tracking-[0.12em] dark:text-slate-400 text-steel-grey mb-1">{label}</p>
       <div className="flex items-baseline gap-1">
         <motion.span
-          className="text-xl font-heading font-bold text-white tabular-nums"
+          className="text-xl font-heading font-bold dark:text-white text-deep-navy tabular-nums"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: delay + 0.3 }}
@@ -301,12 +301,12 @@ export default function Hero() {
   return (
     <section
       ref={heroRef}
-      className="relative min-h-screen flex items-center overflow-hidden"
+      className="relative min-h-screen flex items-center overflow-hidden transition-colors duration-500"
       aria-label="Indian Hydraulic Works – Premium Hydraulic Pumps & Machinery"
     >
-      {/* ── Background ── */}
+      {/* ── Background — Dark ── */}
       <div
-        className="absolute inset-0 z-0"
+        className="absolute inset-0 z-0 dark:opacity-100 opacity-0 transition-opacity duration-500"
         style={{
           background: `linear-gradient(
             160deg,
@@ -318,9 +318,23 @@ export default function Hero() {
           )`,
         }}
       />
+      {/* ── Background — Light ── */}
+      <div
+        className="absolute inset-0 z-0 dark:opacity-0 opacity-100 transition-opacity duration-500"
+        style={{
+          background: `linear-gradient(
+            160deg,
+            #e2e8f0 0%,
+            #f1f5f9 25%,
+            #f8fafc 50%,
+            #f1f5f9 75%,
+            #e2e8f0 100%
+          )`,
+        }}
+      />
 
       {/* Blueprint grid */}
-      <div className="absolute inset-0 z-[1] pointer-events-none opacity-[0.025]"
+      <div className="absolute inset-0 z-[1] pointer-events-none dark:opacity-[0.025] opacity-[0.06]"
         style={{
           backgroundImage: `
             linear-gradient(rgba(148,163,184,0.5) 1px, transparent 1px),
@@ -331,15 +345,15 @@ export default function Hero() {
       />
 
       {/* Noise texture */}
-      <div className="absolute inset-0 z-[1] pointer-events-none opacity-[0.04]"
+      <div className="absolute inset-0 z-[1] pointer-events-none dark:opacity-[0.04] opacity-[0.03]"
         style={{
           backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
         }}
       />
 
       {/* Ambient glow */}
-      <div className="absolute top-[10%] right-[20%] w-[500px] h-[500px] bg-trust-blue/10 rounded-full blur-[160px] pointer-events-none z-[1]" />
-      <div className="absolute bottom-[5%] left-[10%] w-[400px] h-[400px] bg-blue-600/8 rounded-full blur-[140px] pointer-events-none z-[1]" />
+      <div className="absolute top-[10%] right-[20%] w-[500px] h-[500px] dark:bg-trust-blue/10 bg-trust-blue/[0.07] rounded-full blur-[160px] pointer-events-none z-[1]" />
+      <div className="absolute bottom-[5%] left-[10%] w-[400px] h-[400px] dark:bg-blue-600/8 bg-sky-400/[0.06] rounded-full blur-[140px] pointer-events-none z-[1]" />
 
       {/* ── Split Layout ── */}
       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 pt-28 pb-16 md:pt-36 md:pb-24">
@@ -351,19 +365,19 @@ export default function Hero() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="text-sm font-semibold tracking-[0.15em] uppercase text-slate-400 mb-6"
+              className="text-sm font-semibold tracking-[0.15em] uppercase dark:text-slate-400 text-steel-grey mb-6"
             >
               Indian Hydraulic Works · Faridabad
             </motion.p>
 
             <motion.h1
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.15 }}
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-[3.5rem] xl:text-6xl font-heading font-bold text-white leading-[1.1] tracking-tight"
+              initial={{ y: 30 }}
+              animate={{ y: 0 }}
+              transition={{ duration: 0.7, delay: 0.05 }}
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-[3.5rem] xl:text-6xl font-heading font-bold dark:text-white text-deep-navy leading-[1.1] tracking-tight"
             >
               Precision{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-300 via-blue-400 to-trust-blue">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r dark:from-sky-300 dark:via-blue-400 dark:to-trust-blue from-trust-blue via-blue-600 to-sky-600">
                 Hydraulic
               </span>
               <br />
@@ -371,10 +385,10 @@ export default function Hero() {
             </motion.h1>
 
             <motion.p
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0.5, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="mt-6 text-base sm:text-lg text-slate-300/90 max-w-lg leading-relaxed"
+              transition={{ duration: 0.6, delay: 0.15 }}
+              className="mt-6 text-base sm:text-lg dark:text-slate-300/90 text-steel-grey max-w-lg leading-relaxed"
             >
               From high-performance hydraulic pumps to complete industrial
               machinery solutions — powering India&apos;s manufacturing backbone
@@ -392,7 +406,7 @@ export default function Hero() {
               </Button>
               <Button
                 variant="outline"
-                className="px-8 py-3.5 text-base border-white/30 text-white hover:bg-white/10"
+                className="px-8 py-3.5 text-base dark:border-white/30 dark:text-white dark:hover:bg-white/10 border-deep-navy/30 text-deep-navy hover:bg-deep-navy/5"
               >
                 View Products
               </Button>
@@ -403,7 +417,7 @@ export default function Hero() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.9, duration: 0.6 }}
-              className="grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-4 lg:gap-8 mt-12 pt-8 border-t border-white/[0.06]"
+              className="grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-4 lg:gap-8 mt-12 pt-8 border-t dark:border-white/[0.06] border-slate-300/40"
             >
               {stats.map((s) => (
                 <motion.div
@@ -412,8 +426,8 @@ export default function Hero() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: s.delay, duration: 0.5 }}
                 >
-                  <p className="text-xl sm:text-2xl lg:text-3xl font-heading font-bold text-white tracking-tight whitespace-nowrap">{s.value}</p>
-                  <p className="text-[10px] sm:text-xs text-slate-400 mt-1 uppercase tracking-[0.15em] font-semibold">{s.label}</p>
+                  <p className="text-xl sm:text-2xl lg:text-3xl font-heading font-bold dark:text-white text-deep-navy tracking-tight whitespace-nowrap">{s.value}</p>
+                  <p className="text-[10px] sm:text-xs dark:text-slate-400 text-steel-grey mt-1 uppercase tracking-[0.15em] font-semibold">{s.label}</p>
                 </motion.div>
               ))}
             </motion.div>
@@ -441,7 +455,7 @@ export default function Hero() {
                 top: glowY.get() + "%",
                 x: "-50%",
                 y: "-50%",
-                background: `radial-gradient(circle, ${preset.color} 0%, rgba(0,0,0,0) 70%)`,
+                background: `radial-gradient(circle, ${preset.color} 0%, transparent 70%)`,
                 opacity: 0.15,
                 filter: "blur(40px)",
               }}
@@ -474,7 +488,7 @@ export default function Hero() {
 
             {/* Orbiting rings */}
             <motion.div
-              className="absolute w-[300px] h-[300px] rounded-full border border-white/[0.04]"
+              className="absolute w-[300px] h-[300px] rounded-full border dark:border-white/[0.04] border-slate-400/[0.08]"
               animate={{ rotate: 360 }}
               transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
             >
@@ -487,7 +501,7 @@ export default function Hero() {
             </motion.div>
 
             <motion.div
-              className="absolute w-[380px] h-[380px] rounded-full border border-dashed border-white/[0.03]"
+              className="absolute w-[380px] h-[380px] rounded-full border border-dashed dark:border-white/[0.03] border-slate-400/[0.06]"
               animate={{ rotate: -360 }}
               transition={{ duration: 45, repeat: Infinity, ease: "linear" }}
             >
@@ -504,7 +518,7 @@ export default function Hero() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 2.5 }}
-              className="absolute bottom-2 left-1/2 -translate-x-1/2 text-[9px] text-slate-500/60 uppercase tracking-[0.15em] font-medium z-20 whitespace-nowrap"
+              className="absolute bottom-2 left-1/2 -translate-x-1/2 text-[9px] dark:text-slate-500/60 text-steel-grey/60 uppercase tracking-[0.15em] font-medium z-20 whitespace-nowrap"
             >
               Click gauge to change mode
             </motion.p>
@@ -512,21 +526,6 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Scroll indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 2, duration: 0.6 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2"
-      >
-        <span className="text-[10px] uppercase tracking-[0.2em] text-slate-500 font-semibold">Scroll</span>
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ repeat: Infinity, duration: 1.6, ease: "easeInOut" }}
-        >
-          <ChevronDown className="w-5 h-5 text-slate-500" />
-        </motion.div>
-      </motion.div>
 
       {/* Bottom fade */}
       <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[var(--background)] to-transparent z-[3]" />

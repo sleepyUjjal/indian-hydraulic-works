@@ -119,13 +119,16 @@ function ServiceCard({ service, index }) {
       {/* Card body */}
       <div
         className="relative overflow-hidden rounded-2xl p-6 sm:p-8 h-full
-          bg-white border border-slate-200/80
-          shadow-[0_4px_20px_rgba(15,23,42,0.06),0_1px_3px_rgba(15,23,42,0.04)]
-          group-hover:shadow-[0_20px_50px_rgba(15,23,42,0.12),0_8px_20px_rgba(15,23,42,0.06)]
-          transition-shadow duration-500"
+          bg-[var(--surface)] border border-[var(--border-color)]
+          transition-all duration-500"
+        style={{
+          boxShadow: "var(--card-shadow)",
+        }}
+        onMouseEnter={(e) => { e.currentTarget.style.boxShadow = "var(--card-shadow-hover)"; }}
+        onMouseLeave={(e) => { e.currentTarget.style.boxShadow = "var(--card-shadow)"; }}
       >
         {/* Top highlight line */}
-        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
+        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[var(--border-color)] to-transparent" />
 
         {/* Accent top border — appears on hover */}
         <motion.div
@@ -138,7 +141,7 @@ function ServiceCard({ service, index }) {
 
         {/* Hover glow */}
         <div
-          className="absolute -top-20 -right-20 w-40 h-40 rounded-full blur-3xl opacity-0 group-hover:opacity-[0.08] transition-opacity duration-700"
+          className="absolute -top-20 -right-20 w-40 h-40 rounded-full blur-3xl opacity-0 group-hover:opacity-[0.08] dark:group-hover:opacity-[0.15] transition-opacity duration-700"
           style={{ backgroundColor: service.accent }}
         />
 
@@ -147,13 +150,12 @@ function ServiceCard({ service, index }) {
           <div
             className="w-14 h-14 rounded-xl flex items-center justify-center
               border transition-all duration-500
-              bg-slate-50 border-slate-200/60
+              bg-[var(--surface-hover)] border-[var(--border-color)]
               group-hover:border-transparent
               shadow-[inset_0_1px_2px_rgba(15,23,42,0.06)]
-              group-hover:shadow-[0_4px_15px_rgba(0,0,0,0.08)]"
-            style={{
-              "--hover-bg": `${service.accent}10`,
-            }}
+              dark:shadow-[inset_0_1px_2px_rgba(0,0,0,0.2)]
+              group-hover:shadow-[0_4px_15px_rgba(0,0,0,0.08)]
+              dark:group-hover:shadow-[0_4px_15px_rgba(0,0,0,0.3)]"
           >
             <div className="transition-transform duration-500 group-hover:scale-110">
               {service.icon(service.accent)}
@@ -170,12 +172,12 @@ function ServiceCard({ service, index }) {
         </div>
 
         {/* Title */}
-        <h3 className="text-lg font-heading font-bold text-deep-navy mb-3 tracking-tight group-hover:text-trust-blue transition-colors duration-300">
+        <h3 className="text-lg font-heading font-bold text-[var(--text-primary)] mb-3 tracking-tight group-hover:text-trust-blue transition-colors duration-300">
           {service.title}
         </h3>
 
         {/* Description */}
-        <p className="text-sm text-steel-grey leading-relaxed mb-6">
+        <p className="text-sm text-[var(--text-secondary)] leading-relaxed mb-6">
           {service.description}
         </p>
 
@@ -211,24 +213,24 @@ export default function Services() {
   return (
     <section
       ref={sectionRef}
-      className="relative py-24 sm:py-32 overflow-hidden bg-[#f8fafc]"
+      className="relative py-24 sm:py-32 overflow-hidden bg-[var(--background)] transition-colors duration-300"
       aria-label="Our Services"
       id="services"
     >
       {/* Subtle background texture */}
       <div className="absolute inset-0 pointer-events-none">
         <div
-          className="absolute inset-0 opacity-[0.015]"
+          className="absolute inset-0 opacity-[0.015] dark:opacity-[0.04]"
           style={{
             backgroundImage: `
-              linear-gradient(rgba(15,23,42,0.3) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(15,23,42,0.3) 1px, transparent 1px)
+              linear-gradient(rgba(148,163,184,0.4) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(148,163,184,0.4) 1px, transparent 1px)
             `,
             backgroundSize: "80px 80px",
           }}
         />
         {/* Ambient glow */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] bg-trust-blue/[0.03] rounded-full blur-[120px]" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] bg-trust-blue/[0.03] dark:bg-trust-blue/[0.06] rounded-full blur-[120px]" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-6">
@@ -238,7 +240,7 @@ export default function Services() {
             initial={{ opacity: 0, y: 10 }}
             animate={headerInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5 }}
-            className="text-sm font-semibold tracking-[0.2em] uppercase text-trust-blue mb-4"
+            className="text-sm font-semibold tracking-[0.2em] uppercase text-trust-blue dark:text-sky-400 mb-4"
           >
             What We Do
           </motion.p>
@@ -247,10 +249,10 @@ export default function Services() {
             initial={{ opacity: 0, y: 20 }}
             animate={headerInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-deep-navy tracking-tight"
+            className="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-[var(--text-primary)] tracking-tight"
           >
             Our Core{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-trust-blue to-sky-500">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-trust-blue to-sky-500 dark:from-sky-400 dark:to-blue-400">
               Services
             </span>
           </motion.h2>
@@ -259,7 +261,7 @@ export default function Services() {
             initial={{ opacity: 0, y: 15 }}
             animate={headerInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="mt-4 text-base sm:text-lg text-steel-grey max-w-2xl mx-auto leading-relaxed"
+            className="mt-4 text-base sm:text-lg text-[var(--text-secondary)] max-w-2xl mx-auto leading-relaxed"
           >
             Comprehensive hydraulic solutions — from precision repairs to
             complete system manufacturing — delivered with 45+ years of
@@ -290,7 +292,7 @@ export default function Services() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="text-center mt-16 sm:mt-20"
         >
-          <p className="text-steel-grey mb-6 text-sm sm:text-base">
+          <p className="text-[var(--text-secondary)] mb-6 text-sm sm:text-base">
             Need a custom hydraulic solution? We&apos;ll engineer it for you.
           </p>
           <Button variant="primary" className="px-10 py-3.5 text-base">
