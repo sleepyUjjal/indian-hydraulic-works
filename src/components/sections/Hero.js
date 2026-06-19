@@ -9,10 +9,10 @@ import { ChevronDown } from "lucide-react";
    Gauge presets — click to cycle through
    ───────────────────────────────────────────── */
 const GAUGE_PRESETS = [
-  { psi: 2450, fill: 0.70, needle: 55,  label: "Operating", color: "#3b82f6" },
-  { psi: 3200, fill: 0.90, needle: 100, label: "Max Load",  color: "#f59e0b" },
-  { psi: 800,  fill: 0.25, needle: -68, label: "Idle",      color: "#22c55e" },
-  { psi: 1600, fill: 0.50, needle: 0,   label: "Standard",  color: "#8b5cf6" },
+  { psi: 2450, fill: 0.70, needle: 55, label: "Operating", color: "#3b82f6" },
+  { psi: 3200, fill: 0.90, needle: 100, label: "Max Load", color: "#f59e0b" },
+  { psi: 800, fill: 0.25, needle: -68, label: "Idle", color: "#22c55e" },
+  { psi: 1600, fill: 0.50, needle: 0, label: "Standard", color: "#8b5cf6" },
 ];
 
 /* ─────────────────────────────────────────────
@@ -35,8 +35,9 @@ function PressureGauge({ preset, onCycle }) {
       {/* Outer glow — color matches preset */}
       <motion.div
         className="absolute inset-[-20px] rounded-full blur-2xl"
-        initial={{ backgroundColor: `${preset.color}20` }}
-        animate={{ backgroundColor: `${preset.color}20` }}
+        style={{ opacity: 0.2 }}
+        initial={{ backgroundColor: preset.color }}
+        animate={{ backgroundColor: preset.color }}
         transition={{ duration: 0.8 }}
       />
 
@@ -199,6 +200,7 @@ function FlowLines({ color }) {
           key={i}
           cx={p.cx} cy={p.cy} r="3"
           fill={color}
+          initial={{ opacity: 0, scale: 0 }}
           animate={{ opacity: [0, 0.6, 0], scale: [0, 1.5, 0] }}
           transition={{ duration: 2.5, delay: i * 0.4, repeat: Infinity, repeatDelay: 2 }}
         />
@@ -244,10 +246,10 @@ function MetricPanel({ label, value, unit, delay, className, accentColor }) {
    Stat bar (bottom row)
    ───────────────────────────────────────────── */
 const stats = [
-  { value: "25+", label: "Years", delay: 0.4 },
-  { value: "ISO", label: "Certified", delay: 0.55 },
-  { value: "24/7", label: "Service", delay: 0.7 },
-  { value: "1000+", label: "Projects", delay: 0.85 },
+  { value: "1980", label: "Established", delay: 0.4 },
+  { value: "45+", label: "Years Experience", delay: 0.55 },
+  { value: "100%", label: "Quality Service", delay: 0.7 },
+  { value: "1000+", label: "Projects Delivered", delay: 0.85 },
 ];
 
 /* ═════════════════════════════════════════════
@@ -401,7 +403,7 @@ export default function Hero() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.9, duration: 0.6 }}
-              className="flex gap-8 mt-14 pt-8 border-t border-white/[0.06]"
+              className="grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-4 lg:gap-8 mt-12 pt-8 border-t border-white/[0.06]"
             >
               {stats.map((s) => (
                 <motion.div
@@ -410,8 +412,8 @@ export default function Hero() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: s.delay, duration: 0.5 }}
                 >
-                  <p className="text-2xl sm:text-3xl font-heading font-bold text-white">{s.value}</p>
-                  <p className="text-xs text-slate-400 mt-1 uppercase tracking-wider font-medium">{s.label}</p>
+                  <p className="text-xl sm:text-2xl lg:text-3xl font-heading font-bold text-white tracking-tight whitespace-nowrap">{s.value}</p>
+                  <p className="text-[10px] sm:text-xs text-slate-400 mt-1 uppercase tracking-[0.15em] font-semibold">{s.label}</p>
                 </motion.div>
               ))}
             </motion.div>
@@ -439,7 +441,8 @@ export default function Hero() {
                 top: glowY.get() + "%",
                 x: "-50%",
                 y: "-50%",
-                background: `radial-gradient(circle, ${preset.color}15 0%, transparent 70%)`,
+                background: `radial-gradient(circle, ${preset.color} 0%, rgba(0,0,0,0) 70%)`,
+                opacity: 0.15,
                 filter: "blur(40px)",
               }}
             />
