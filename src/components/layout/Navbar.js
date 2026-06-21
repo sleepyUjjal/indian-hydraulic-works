@@ -20,8 +20,8 @@ export function Navbar() {
   }, []);
 
   const navLinks = [
-    { name: "Services", href: "/services" },
-    { name: "Projects", href: "/projects" },
+    { name: "Services", href: "/#services" },
+    { name: "Products", href: "/products" },
     { name: "About", href: "/about" },
   ];
 

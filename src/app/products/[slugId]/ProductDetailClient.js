@@ -5,20 +5,20 @@ import Image from "next/image";
 import Link from "next/link";
 
 /* ═════════════════════════════════════════════
-   PROJECT DETAIL — Client Component
+   PRODUCT DETAIL — Client Component
    ═════════════════════════════════════════════ */
-export default function ProjectDetailClient({ project, prevProject, nextProject }) {
+export default function ProductDetailClient({ product, prevProduct, nextProduct }) {
   return (
     <main className="min-h-screen bg-[var(--background)] transition-colors duration-300">
       {/* Hero banner */}
-      <section className="relative h-[50vh] sm:h-[60vh] overflow-hidden">
+      <section className="relative h-[50vh] sm:h-[60vh] overflow-hidden bg-white">
         <Image
-          src={project.image}
-          alt={project.title}
+          src={product.image}
+          alt={product.title}
           fill
           priority
           sizes="100vw"
-          className="object-cover"
+          className="object-contain"
         />
         {/* Dark overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-[var(--background)] via-black/50 to-black/30" />
@@ -26,7 +26,7 @@ export default function ProjectDetailClient({ project, prevProject, nextProject 
         {/* Back button */}
         <div className="absolute top-24 left-6 z-20">
           <Link
-            href="/projects"
+            href="/products"
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full
               bg-white/10 backdrop-blur-md text-white text-sm font-semibold
               border border-white/20 hover:bg-white/20 transition-all duration-300"
@@ -34,7 +34,7 @@ export default function ProjectDetailClient({ project, prevProject, nextProject 
             <svg className="w-4 h-4" viewBox="0 0 16 16" fill="none">
               <path d="M13 8H3M7 4L3 8l4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
-            All Projects
+            All Products
           </Link>
         </div>
 
@@ -48,7 +48,7 @@ export default function ProjectDetailClient({ project, prevProject, nextProject 
               className="inline-block px-3 py-1 mb-4 text-[10px] font-bold uppercase tracking-[0.15em]
                 rounded-full bg-trust-blue/80 backdrop-blur-md text-white border border-trust-blue/40"
             >
-              {project.category}
+              {product.category}
             </motion.span>
 
             <motion.h1
@@ -57,7 +57,7 @@ export default function ProjectDetailClient({ project, prevProject, nextProject 
               transition={{ duration: 0.5, delay: 0.1 }}
               className="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-white tracking-tight"
             >
-              {project.title}
+              {product.title}
             </motion.h1>
 
             <motion.div
@@ -71,14 +71,14 @@ export default function ProjectDetailClient({ project, prevProject, nextProject 
                   <rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" strokeWidth="1.5" />
                   <path d="M16 2v4M8 2v4M3 10h18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
                 </svg>
-                {project.completionDate}
+                {product.completionDate}
               </span>
               <span className="flex items-center gap-1.5">
                 <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none">
                   <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" stroke="currentColor" strokeWidth="1.5" />
                   <circle cx="12" cy="7" r="4" stroke="currentColor" strokeWidth="1.5" />
                 </svg>
-                {project.client}
+                {product.client}
               </span>
             </motion.div>
           </div>
@@ -96,10 +96,10 @@ export default function ProjectDetailClient({ project, prevProject, nextProject 
             className="lg:col-span-2"
           >
             <h2 className="text-xl font-heading font-bold text-[var(--text-primary)] mb-4">
-              Project Overview
+              Product Overview
             </h2>
             <p className="text-[var(--text-secondary)] leading-relaxed text-base">
-              {project.fullDescription}
+              {product.fullDescription}
             </p>
 
             {/* Highlights */}
@@ -108,7 +108,7 @@ export default function ProjectDetailClient({ project, prevProject, nextProject 
                 Key Highlights
               </h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {project.highlights.map((highlight, i) => (
+                {product.highlights.map((highlight, i) => (
                   <motion.div
                     key={i}
                     initial={{ opacity: 0, x: -10 }}
@@ -144,12 +144,12 @@ export default function ProjectDetailClient({ project, prevProject, nextProject 
                 Technical Specifications
               </h3>
               <div className="space-y-4">
-                {Object.entries(project.specs).map(([key, val]) => (
-                  <div key={key} className="flex justify-between items-center">
-                    <span className="text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)]">
+                {Object.entries(product.specs).map(([key, val]) => (
+                  <div key={key} className="flex justify-between items-center gap-2">
+                    <span className="text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)] shrink-0">
                       {key.replace(/([A-Z])/g, " $1").trim()}
                     </span>
-                    <span className="text-sm font-bold font-mono text-trust-blue dark:text-sky-400">
+                    <span className="text-sm font-bold font-mono text-trust-blue dark:text-sky-400 text-right truncate">
                       {val}
                     </span>
                   </div>
@@ -159,18 +159,18 @@ export default function ProjectDetailClient({ project, prevProject, nextProject 
               <div className="mt-6 pt-5 border-t border-[var(--border-color)]">
                 <div className="flex justify-between items-center mb-3">
                   <span className="text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)]">
-                    Completed
+                    Availability
                   </span>
                   <span className="text-sm font-semibold text-[var(--text-primary)]">
-                    {project.completionDate}
+                    {product.completionDate}
                   </span>
                 </div>
                 <div className="flex justify-between items-center">
                   <span className="text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)]">
-                    Client
+                    Market / Industry
                   </span>
                   <span className="text-sm font-semibold text-[var(--text-primary)]">
-                    {project.client}
+                    {product.client}
                   </span>
                 </div>
               </div>
@@ -195,9 +195,9 @@ export default function ProjectDetailClient({ project, prevProject, nextProject 
         {/* Prev/Next navigation */}
         <div className="mt-16 pt-8 border-t border-[var(--border-color)]">
           <div className="flex justify-between items-center">
-            {prevProject ? (
+            {prevProduct ? (
               <Link
-                href={prevProject.path}
+                href={prevProduct.path}
                 className="group flex items-center gap-3 text-sm text-[var(--text-secondary)] hover:text-trust-blue transition-colors duration-300"
               >
                 <svg className="w-5 h-5 transition-transform duration-300 group-hover:-translate-x-1" viewBox="0 0 16 16" fill="none">
@@ -205,19 +205,19 @@ export default function ProjectDetailClient({ project, prevProject, nextProject 
                 </svg>
                 <div>
                   <p className="text-[10px] uppercase tracking-wider text-[var(--text-muted)] mb-0.5">Previous</p>
-                  <p className="font-semibold">{prevProject.title}</p>
+                  <p className="font-semibold">{prevProduct.title}</p>
                 </div>
               </Link>
             ) : <div />}
 
-            {nextProject ? (
+            {nextProduct ? (
               <Link
-                href={nextProject.path}
+                href={nextProduct.path}
                 className="group flex items-center gap-3 text-sm text-[var(--text-secondary)] hover:text-trust-blue transition-colors duration-300 text-right"
               >
                 <div>
                   <p className="text-[10px] uppercase tracking-wider text-[var(--text-muted)] mb-0.5">Next</p>
-                  <p className="font-semibold">{nextProject.title}</p>
+                  <p className="font-semibold">{nextProduct.title}</p>
                 </div>
                 <svg className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" viewBox="0 0 16 16" fill="none">
                   <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
