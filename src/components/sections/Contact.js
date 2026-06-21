@@ -124,34 +124,30 @@ export default function Contact() {
 
     setIsSubmitting(true);
     
-    try {
-      // Background request to your future backend API
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formState),
-      });
+    // Format the message for WhatsApp
+    const whatsappMessage = `*New Website Inquiry!* 🚀
+*Name:* ${formState.name}
+*Email:* ${formState.email}
+*Phone:* ${formState.phone || "Not provided"}
 
-      // If backend is not ready yet, we simulate a successful delay so the UI still works
-      if (response.status === 404) {
-        await new Promise(resolve => setTimeout(resolve, 1500));
-      } else if (!response.ok) {
-        throw new Error("Failed to send message");
-      }
-      
-      setSubmitted(true);
-      setTimeout(() => setSubmitted(false), 4000);
-      setFormState({ name: "", email: "", phone: "", message: "" });
-      setErrors({});
-    } catch (error) {
-      console.error("Submission error:", error);
-      // Even if it fails, we show error or fallback
-      alert("Failed to send message. Please try calling us directly.");
-    } finally {
-      setIsSubmitting(false);
-    }
+*Project Details:*
+${formState.message}`;
+
+    // Target WhatsApp Number (fetch from env or fallback)
+    const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "917942651152";
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+    
+    // Small delay for UI feedback
+    await new Promise(resolve => setTimeout(resolve, 800));
+    
+    // Open WhatsApp in new tab
+    window.open(whatsappUrl, "_blank");
+    
+    setIsSubmitting(false);
+    setSubmitted(true);
+    setTimeout(() => setSubmitted(false), 4000);
+    setFormState({ name: "", email: "", phone: "", message: "" });
+    setErrors({});
   };
 
   return (

@@ -22,6 +22,7 @@ import { Footer } from "@/components/layout/Footer";
 import { ThemeProvider } from "@/lib/ThemeContext";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/react";
+import { FloatingWhatsApp } from "@/components/ui/FloatingWhatsApp";
 
 export default function RootLayout({ children }) {
   return (
@@ -37,6 +38,7 @@ export default function RootLayout({ children }) {
           <Navbar />
           {children}
           <Footer />
+          <FloatingWhatsApp />
         </ThemeProvider>
         <SpeedInsights />
         <Analytics />
