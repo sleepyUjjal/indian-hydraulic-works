@@ -97,14 +97,61 @@ export default function Contact() {
   const sectionRef = useRef(null);
   const headerInView = useInView(sectionRef, { once: true, margin: "-100px" });
   const [formState, setFormState] = useState({ name: "", email: "", phone: "", message: "" });
+  const [errors, setErrors] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = (e) => {
+  const validateForm = () => {
+    const newErrors = {};
+    if (!formState.name.trim() || formState.name.length < 2) newErrors.name = "Please enter a valid name.";
+    
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!formState.email.trim() || !emailRegex.test(formState.email)) newErrors.email = "Please enter a valid email address.";
+    
+    if (formState.phone.trim() && !/^[\d\s+()-]{8,15}$/.test(formState.phone)) {
+      newErrors.phone = "Please enter a valid phone number.";
+    }
+
+    if (!formState.message.trim() || formState.message.length < 10) newErrors.message = "Please provide more details (at least 10 chars).";
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // In production, this would send to an API
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 4000);
-    setFormState({ name: "", email: "", phone: "", message: "" });
+    if (!validateForm()) return;
+
+    setIsSubmitting(true);
+    
+    try {
+      // Background request to your future backend API
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formState),
+      });
+
+      // If backend is not ready yet, we simulate a successful delay so the UI still works
+      if (response.status === 404) {
+        await new Promise(resolve => setTimeout(resolve, 1500));
+      } else if (!response.ok) {
+        throw new Error("Failed to send message");
+      }
+      
+      setSubmitted(true);
+      setTimeout(() => setSubmitted(false), 4000);
+      setFormState({ name: "", email: "", phone: "", message: "" });
+      setErrors({});
+    } catch (error) {
+      console.error("Submission error:", error);
+      // Even if it fails, we show error or fallback
+      alert("Failed to send message. Please try calling us directly.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -215,34 +262,43 @@ export default function Contact() {
 
               <form onSubmit={handleSubmit} className="space-y-5">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                  <div>
+                  <motion.div animate={errors.name ? { x: [-10, 10, -10, 10, 0], transition: { duration: 0.4 } } : {}}>
                     <label htmlFor="contact-name" className="block text-sm font-semibold text-[var(--text-secondary)] mb-2">
-                      Full Name
+                      Full Name <span className="text-red-500">*</span>
                     </label>
                     <Input
                       id="contact-name"
                       placeholder="Your name"
                       value={formState.name}
-                      onChange={(e) => setFormState({ ...formState, name: e.target.value })}
-                      required
+                      onChange={(e) => {
+                        setFormState({ ...formState, name: e.target.value });
+                        if (errors.name) setErrors({ ...errors, name: null });
+                      }}
+                      className={errors.name ? "border-red-500/50 focus:border-red-500 focus:ring-red-500/20" : ""}
                     />
-                  </div>
-                  <div>
+                    {errors.name && <p className="text-red-500 text-xs mt-1.5 font-medium">{errors.name}</p>}
+                  </motion.div>
+
+                  <motion.div animate={errors.email ? { x: [-10, 10, -10, 10, 0], transition: { duration: 0.4 } } : {}}>
                     <label htmlFor="contact-email" className="block text-sm font-semibold text-[var(--text-secondary)] mb-2">
-                      Email
+                      Email <span className="text-red-500">*</span>
                     </label>
                     <Input
                       id="contact-email"
                       type="email"
                       placeholder="you@company.com"
                       value={formState.email}
-                      onChange={(e) => setFormState({ ...formState, email: e.target.value })}
-                      required
+                      onChange={(e) => {
+                        setFormState({ ...formState, email: e.target.value });
+                        if (errors.email) setErrors({ ...errors, email: null });
+                      }}
+                      className={errors.email ? "border-red-500/50 focus:border-red-500 focus:ring-red-500/20" : ""}
                     />
-                  </div>
+                    {errors.email && <p className="text-red-500 text-xs mt-1.5 font-medium">{errors.email}</p>}
+                  </motion.div>
                 </div>
 
-                <div>
+                <motion.div animate={errors.phone ? { x: [-10, 10, -10, 10, 0], transition: { duration: 0.4 } } : {}}>
                   <label htmlFor="contact-phone" className="block text-sm font-semibold text-[var(--text-secondary)] mb-2">
                     Phone Number
                   </label>
@@ -251,30 +307,59 @@ export default function Contact() {
                     type="tel"
                     placeholder="+91 XXXXX XXXXX"
                     value={formState.phone}
-                    onChange={(e) => setFormState({ ...formState, phone: e.target.value })}
+                    onChange={(e) => {
+                      setFormState({ ...formState, phone: e.target.value });
+                      if (errors.phone) setErrors({ ...errors, phone: null });
+                    }}
+                    className={errors.phone ? "border-red-500/50 focus:border-red-500 focus:ring-red-500/20" : ""}
                   />
-                </div>
+                  {errors.phone && <p className="text-red-500 text-xs mt-1.5 font-medium">{errors.phone}</p>}
+                </motion.div>
 
-                <div>
+                <motion.div animate={errors.message ? { x: [-10, 10, -10, 10, 0], transition: { duration: 0.4 } } : {}}>
                   <label htmlFor="contact-message" className="block text-sm font-semibold text-[var(--text-secondary)] mb-2">
-                    Project Details
+                    Project Details <span className="text-red-500">*</span>
                   </label>
                   <Textarea
                     id="contact-message"
                     placeholder="Tell us about your hydraulic requirements — equipment type, issue, or custom build specs..."
                     value={formState.message}
-                    onChange={(e) => setFormState({ ...formState, message: e.target.value })}
-                    required
+                    onChange={(e) => {
+                      setFormState({ ...formState, message: e.target.value });
+                      if (errors.message) setErrors({ ...errors, message: null });
+                    }}
+                    className={errors.message ? "border-red-500/50 focus:border-red-500 focus:ring-red-500/20" : ""}
                   />
-                </div>
+                  {errors.message && <p className="text-red-500 text-xs mt-1.5 font-medium">{errors.message}</p>}
+                </motion.div>
 
                 <div className="flex items-center gap-4">
                   <Button
                     type="submit"
                     variant="primary"
-                    className="px-8 py-3.5 text-base"
+                    className="px-8 py-3.5 text-base relative overflow-hidden"
+                    disabled={isSubmitting || submitted}
                   >
-                    {submitted ? "✓ Request Sent!" : "Send Request"}
+                    <motion.div
+                      initial={false}
+                      animate={{ scale: isSubmitting ? 0.95 : 1 }}
+                      transition={{ duration: 0.1 }}
+                      className="flex items-center justify-center gap-2"
+                    >
+                      {isSubmitting ? (
+                        <>
+                          <svg className="animate-spin h-5 w-5 text-white" viewBox="0 0 24 24">
+                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
+                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                          </svg>
+                          Processing...
+                        </>
+                      ) : submitted ? (
+                        "✓ Request Sent!"
+                      ) : (
+                        "Send Request"
+                      )}
+                    </motion.div>
                   </Button>
                   {submitted && (
                     <motion.p

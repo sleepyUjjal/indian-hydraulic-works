@@ -63,7 +63,7 @@ export default function Testimonials() {
   };
 
   return (
-    <section className="relative py-24 sm:py-32 overflow-hidden bg-[var(--background)]">
+    <section className="relative py-24 sm:py-8 overflow-hidden bg-[var(--background)]">
       {/* Decorative Background */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-trust-blue/[0.03] dark:bg-trust-blue/[0.05] rounded-full blur-[120px] pointer-events-none" />
 
@@ -140,7 +140,7 @@ export default function Testimonials() {
           </AnimatePresence>
 
           {/* Left/Right Buttons */}
-          <button 
+          <button
             onClick={() => paginate(-1)}
             className="absolute left-0 sm:-left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 flex items-center justify-center rounded-full bg-[var(--surface)] border border-[var(--border-color)] text-[var(--text-primary)] hover:text-trust-blue hover:border-trust-blue transition-all focus:outline-none"
             style={{ boxShadow: "var(--card-shadow)" }}
@@ -150,8 +150,8 @@ export default function Testimonials() {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
             </svg>
           </button>
-          
-          <button 
+
+          <button
             onClick={() => paginate(1)}
             className="absolute right-0 sm:-right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 flex items-center justify-center rounded-full bg-[var(--surface)] border border-[var(--border-color)] text-[var(--text-primary)] hover:text-trust-blue hover:border-trust-blue transition-all focus:outline-none"
             style={{ boxShadow: "var(--card-shadow)" }}
@@ -172,9 +172,8 @@ export default function Testimonials() {
                 const newDirection = i > index ? 1 : -1;
                 setPage([page + (i - index), newDirection]);
               }}
-              className={`w-2.5 h-2.5 rounded-full transition-all duration-300 focus:outline-none ${
-                i === index ? "w-8 bg-trust-blue" : "bg-[var(--border-color)] hover:bg-[var(--text-muted)]"
-              }`}
+              className={`w-2.5 h-2.5 rounded-full transition-all duration-300 focus:outline-none ${i === index ? "w-8 bg-trust-blue" : "bg-[var(--border-color)] hover:bg-[var(--text-muted)]"
+                }`}
               aria-label={`Go to testimonial ${i + 1}`}
             />
           ))}
