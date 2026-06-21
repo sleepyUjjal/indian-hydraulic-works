@@ -1,0 +1,11 @@
+Add client-side validation logic.
+Commit 13: feat(contact): integrate interactive map and floating WhatsApp CTA
+Embed a styled location map with custom 3D markers.
+Add a floating, skeuomorphic WhatsApp quick-contact button.
+Phase 6: Polish & Launch
+Commit 14: feat(ux): implement global Framer Motion scroll-reveal animations
+Add stagger fade-ins, slide-ups, and smooth page transitions across all routes to make the site feel alive.
+Commit 15: feat(seo): configure dynamic meta tags, semantic HTML, and ARIA labels
+Ensure WCAG AA compliance and optimized search engine visibility.
+Commit 16: chore(perf): optimize images to WebP and finalize mobile breakpoints
+Compress all industrial imagery, implement advanced lazy loading, and ensure pixel-perfect rendering on 375px, 768px, and 1024px screens.

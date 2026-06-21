@@ -1,11 +1,12 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import {
   motion,
   useInView,
 } from "framer-motion";
 import { Button } from "@/components/ui/Button";
+import ServiceDetailModal from "@/components/ui/ServiceDetailModal";
 
 /* ─────────────────────────────────────────────
    Service data — IHW core offerings
@@ -103,7 +104,7 @@ const SERVICES = [
 /* ─────────────────────────────────────────────
    Service Card — interactive with depth
    ───────────────────────────────────────────── */
-function ServiceCard({ service, index }) {
+function ServiceCard({ service, index, onLearnMore }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
@@ -115,6 +116,7 @@ function ServiceCard({ service, index }) {
       transition={{ duration: 0.6, delay: index * 0.1, ease: "easeOut" }}
       whileHover={{ y: -8, transition: { duration: 0.3, ease: "easeOut" } }}
       className="group relative rounded-2xl cursor-pointer"
+      onClick={() => onLearnMore(service)}
     >
       {/* Card body */}
       <div
@@ -182,7 +184,8 @@ function ServiceCard({ service, index }) {
         </p>
 
         {/* Learn more link */}
-        <div className="flex items-center gap-2 text-sm font-semibold transition-all duration-300 opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0"
+        <div 
+          className="flex items-center gap-2 text-sm font-semibold transition-all duration-300 opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0"
           style={{ color: service.accent }}
         >
           <span>Learn more</span>
@@ -209,6 +212,18 @@ function ServiceCard({ service, index }) {
 export default function Services() {
   const sectionRef = useRef(null);
   const headerInView = useInView(sectionRef, { once: true, margin: "-100px" });
+  const [selectedService, setSelectedService] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleLearnMore = (service) => {
+    setSelectedService(service);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setTimeout(() => setSelectedService(null), 300);
+  };
 
   return (
     <section
@@ -280,7 +295,7 @@ export default function Services() {
         {/* Services grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {SERVICES.map((service, i) => (
-            <ServiceCard key={service.title} service={service} index={i} />
+            <ServiceCard key={service.title} service={service} index={i} onLearnMore={handleLearnMore} />
           ))}
         </div>
 
@@ -300,6 +315,13 @@ export default function Services() {
           </Button>
         </motion.div>
       </div>
+
+      {/* Service Detail Modal */}
+      <ServiceDetailModal
+        service={selectedService}
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+      />
     </section>
   );
 }
