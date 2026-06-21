@@ -16,8 +16,8 @@ const TRUST_BADGES = [
         <path d="M9 12l2 2 4-4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     ),
-    title: "ISO Certified",
-    description: "Quality management systems adhering to international standards",
+    title: "Quality Assurance",
+    description: "Professionals assure that no related problem arises in the near future.",
   },
   {
     icon: (
@@ -63,8 +63,8 @@ const CONTACT_INFO = [
       </svg>
     ),
     label: "Phone",
-    value: "+91 98XXX XXXXX",
-    href: "tel:+9198XXXXXXXX",
+    value: "+91 7942651152",
+    href: "tel:+917942651152",
   },
   {
     icon: (
@@ -85,8 +85,8 @@ const CONTACT_INFO = [
       </svg>
     ),
     label: "Location",
-    value: "Faridabad, Haryana, India",
-    href: "https://maps.google.com/?q=Faridabad+Haryana",
+    value: "Plot No. 10, New A - 73, Kapra Colony, Behind Aggarwal Dhramshala, Air Force Road, NIT Jawahar Colony Faridabad, Faridabad - 121005, Haryana, India",
+    href: "https://maps.google.com/?q=Indian+Hydraulic+Works,+Air+Force+Road,+Jawahar+Colony,+Faridabad",
   },
 ];
 

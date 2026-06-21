@@ -159,7 +159,7 @@ export default function ProductDetailClient({ product, prevProduct, nextProduct 
               <div className="mt-6 pt-5 border-t border-[var(--border-color)]">
                 <div className="flex justify-between items-center mb-3">
                   <span className="text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)]">
-                    Availability
+                    Service Mode
                   </span>
                   <span className="text-sm font-semibold text-[var(--text-primary)]">
                     {product.completionDate}

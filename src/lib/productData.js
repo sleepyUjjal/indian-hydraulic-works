@@ -21,7 +21,7 @@ export const PRODUCTS = [
       "Long service life",
       "Optimal for high-pressure systems"
     ],
-    completionDate: "In Stock",
+    completionDate: "Repair & Service",
     client: "Available"
   },
   {
@@ -39,7 +39,7 @@ export const PRODUCTS = [
       "Energy-efficient operation",
       "Low noise emissions"
     ],
-    completionDate: "In Stock",
+    completionDate: "Repair & Service",
     client: "Available"
   },
   {
@@ -57,7 +57,7 @@ export const PRODUCTS = [
       "Compact design",
       "Ideal for heavy-duty applications"
     ],
-    completionDate: "In Stock",
+    completionDate: "Repair & Service",
     client: "Available"
   },
   {
@@ -75,7 +75,7 @@ export const PRODUCTS = [
       "Smooth, low-pulsation flow",
       "Long operational lifespan"
     ],
-    completionDate: "In Stock",
+    completionDate: "Repair & Service",
     client: "Available"
   },
   {
@@ -93,7 +93,7 @@ export const PRODUCTS = [
       "Cost-effective fluid power",
       "Compact installation footprint"
     ],
-    completionDate: "In Stock",
+    completionDate: "Repair & Service",
     client: "Available"
   },
   {
@@ -111,7 +111,7 @@ export const PRODUCTS = [
       "Reversible rotation",
       "Durable under heavy loads"
     ],
-    completionDate: "In Stock",
+    completionDate: "Repair & Service",
     client: "Available"
   },
   {
@@ -129,7 +129,7 @@ export const PRODUCTS = [
       "Consistent torque delivery",
       "Suitable for harsh environments"
     ],
-    completionDate: "In Stock",
+    completionDate: "Repair & Service",
     client: "Available"
   },
   {
@@ -138,7 +138,7 @@ export const PRODUCTS = [
     slug: "hydraulic-cylinder",
     category: "Cylinders",
     description: "Heavy-duty hydraulic cylinder for linear force applications.",
-    fullDescription: "Our Hydraulic Cylinders are manufactured using high-grade materials to withstand extreme loads. They provide reliable linear force for construction equipment, industrial presses, and custom automation systems.",
+    fullDescription: "EN24, a high-tensile alloy steel, is a common material for hydraulic cylinder components due to its strength, hardness, wear resistance, and ability to withstand high temperatures and pressures. EN24 is known for its good creep resistance, which is important for applications where the cylinder will be exposed to elevated temperatures over extended periods. It's also easily heat-treatable, allowing for maximum corrosion resistance and superior machinability.",
     image: "/products/hydraulic-cylinder-v3.webp",
     specs: { Type: "Double Acting", Material: "High-grade Steel", Application: "Linear Force", Durability: "Heavy Duty" },
     highlights: [
@@ -147,7 +147,7 @@ export const PRODUCTS = [
       "Designed for extreme loads",
       "Customizable stroke lengths"
     ],
-    completionDate: "Made to Order",
+    completionDate: "Repair & Service",
     client: "Available"
   },
   {
@@ -165,7 +165,7 @@ export const PRODUCTS = [
       "Reliable and constant power supply",
       "Available in multiple capacities"
     ],
-    completionDate: "In Stock / Built to Order",
+    completionDate: "Repair & Service",
     client: "Available"
   },
   {
@@ -183,7 +183,7 @@ export const PRODUCTS = [
       "High efficiency operation",
       "Quick and easy installation"
     ],
-    completionDate: "In Stock",
+    completionDate: "Repair & Service",
     client: "Available"
   },
   {
@@ -201,7 +201,7 @@ export const PRODUCTS = [
       "Smooth circuit operation",
       "Durable under high pressure"
     ],
-    completionDate: "In Stock",
+    completionDate: "Repair & Service",
     client: "Available"
   },
   {
