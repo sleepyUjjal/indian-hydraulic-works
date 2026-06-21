@@ -1,3 +1,7 @@
+"use client";
+
+import { motion } from "framer-motion";
+
 export function Footer() {
   return (
     <footer className="bg-[var(--surface)] dark:bg-deep-navy text-[var(--text-primary)] pt-16 pb-8 border-t border-[var(--border-color)] relative overflow-hidden transition-colors duration-300">
@@ -8,7 +12,13 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-12 mb-12">
           
           {/* Column 1: Intro */}
-          <div className="lg:col-span-3 space-y-4">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="lg:col-span-3 space-y-4"
+          >
             <div className="flex items-center gap-2">
               <div className="w-8 h-8 bg-gradient-navy rounded-sm flex items-center justify-center text-white font-heading font-bold shadow-pressed">
                 IHW
@@ -18,10 +28,16 @@ export function Footer() {
             <p className="text-[var(--text-secondary)] mt-4 leading-relaxed text-sm">
               Indian Hydraulic Works, established in 1980, is a trusted name in hydraulic repair and manufacturing. We specialize in Pump, Motor &amp; Valve Repairing, along with Hydraulic Cylinders and Hydraulic Power Packs. With decades of experience, we are committed to delivering reliable solutions, quality workmanship, and timely service.
             </p>
-          </div>
+          </motion.div>
 
           {/* Column 2: Services */}
-          <div className="lg:col-span-2 lg:pl-4">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="lg:col-span-2 lg:pl-4"
+          >
             <h4 className="font-heading font-bold text-lg mb-4">Services</h4>
             <ul className="space-y-3 text-[var(--text-secondary)] text-sm">
               <li><a href="#services" className="hover:text-trust-blue transition-colors">Equipment Repair</a></li>
@@ -29,10 +45,16 @@ export function Footer() {
               <li><a href="#services" className="hover:text-trust-blue transition-colors">Maintenance</a></li>
               <li><a href="/products" className="hover:text-trust-blue transition-colors">Our Products</a></li>
             </ul>
-          </div>
+          </motion.div>
 
           {/* Column 3: Contact Info */}
-          <div className="lg:col-span-4">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="lg:col-span-4"
+          >
             <h4 className="font-heading font-bold text-lg mb-4">Contact</h4>
             <ul className="space-y-4 text-[var(--text-secondary)] text-sm mb-6 lg:mb-0">
               <li>
@@ -56,7 +78,7 @@ export function Footer() {
                 </a>
               </li>
               <li className="flex items-start gap-3">
-                <div className="w-8 h-8 rounded-full bg-[var(--border-color)] flex items-center justify-center shrink-0 mt-1">
+                <div className="w-8 h-8 rounded-full bg-[var(--border-color)] flex items-center justify-center shrink-0 mt-0.5">
                   <svg className="w-4 h-4 text-[var(--text-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -68,10 +90,15 @@ export function Footer() {
                 </span>
               </li>
             </ul>
-          </div>
-          
+          </motion.div>
           {/* Column 4: Map */}
-          <div className="lg:col-span-3 flex flex-col justify-end">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="lg:col-span-3 flex flex-col justify-end"
+          >
             <div className="w-full h-48 lg:h-[220px] rounded-xl overflow-hidden border border-[var(--border-color)] relative" style={{ boxShadow: "var(--card-shadow)" }}>
               <iframe 
                 src="https://maps.google.com/maps?q=Indian+Hydraulic+Works,+Air+Force+Road,+Jawahar+Colony,+Faridabad&t=&z=14&ie=UTF8&iwloc=&output=embed"
@@ -82,7 +109,7 @@ export function Footer() {
                 title="Indian Hydraulic Works Location"
               ></iframe>
             </div>
-          </div>
+          </motion.div>
         </div>
 
         <div className="pt-8 border-t border-[var(--border-color)] flex flex-col md:flex-row items-center justify-between text-sm text-[var(--text-muted)]">
