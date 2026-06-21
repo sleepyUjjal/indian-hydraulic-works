@@ -92,7 +92,7 @@ export function Navbar() {
               </AnimatePresence>
             </button>
 
-            <Button href="/#contact" variant="primary" className="py-2 px-6">Get Quote</Button>
+            <Button href="/contact" variant="primary" className="py-2 px-6">Get Quote</Button>
           </div>
 
           <div className="flex items-center gap-3 md:hidden">
@@ -113,6 +113,7 @@ export function Navbar() {
             <button
               className={`focus:outline-none transition-colors ${scrolled ? "text-[var(--text-primary)]" : "dark:text-white text-deep-navy"}`}
               onClick={() => setMobileMenuOpen(true)}
+              aria-label="Open mobile menu"
             >
               <Menu className="w-7 h-7" />
             </button>
@@ -133,6 +134,7 @@ export function Navbar() {
             <button
               className="absolute top-6 right-6 text-[var(--text-primary)] focus:outline-none"
               onClick={() => setMobileMenuOpen(false)}
+              aria-label="Close mobile menu"
             >
               <X className="w-7 h-7" />
             </button>
@@ -147,7 +149,7 @@ export function Navbar() {
                   {link.name}
                 </a>
               ))}
-              <Button href="/#contact" variant="primary" className="mt-8 w-full py-4 text-lg" onClick={() => setMobileMenuOpen(false)}>
+              <Button href="/contact" variant="primary" className="mt-8 w-full py-4 text-lg" onClick={() => setMobileMenuOpen(false)}>
                 Get Quote
               </Button>
             </div>

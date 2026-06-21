@@ -3,7 +3,7 @@ import Hero from "@/components/sections/Hero";
 
 const Services = dynamic(() => import("@/components/sections/Services"), { ssr: true });
 const Testimonials = dynamic(() => import("@/components/sections/Testimonials"), { ssr: true });
-const Contact = dynamic(() => import("@/components/sections/Contact"), { ssr: true });
+const FAQ = dynamic(() => import("@/components/sections/FAQ"), { ssr: true });
 
 export default function Home() {
   return (
@@ -11,7 +11,7 @@ export default function Home() {
       <Hero />
       <Services />
       <Testimonials />
-      <Contact />
+      <FAQ />
     </main>
   );
 }

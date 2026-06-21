@@ -16,7 +16,7 @@ const TRUST_BADGES = [
         <path d="M9 12l2 2 4-4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     ),
-    title: "Quality Assurance",
+    title: "Quality Assured",
     description: "Professionals assure that no related problem arises in the near future.",
   },
   {
@@ -63,8 +63,8 @@ const CONTACT_INFO = [
       </svg>
     ),
     label: "Phone",
-    value: "+91 7942651152",
-    href: "tel:+917942651152",
+    value: process.env.NEXT_PUBLIC_CONTACT_PHONE || "+91 7942651152",
+    href: `tel:${(process.env.NEXT_PUBLIC_CONTACT_PHONE || "+917942651152").replace(/\s/g, "")}`,
   },
   {
     icon: (
@@ -74,8 +74,8 @@ const CONTACT_INFO = [
       </svg>
     ),
     label: "Email",
-    value: "info@hydraulicworks.com",
-    href: "mailto:info@hydraulicworks.com",
+    value: process.env.NEXT_PUBLIC_CONTACT_EMAIL || "info@hydraulicworks.com",
+    href: `mailto:${process.env.NEXT_PUBLIC_CONTACT_EMAIL || "info@hydraulicworks.com"}`,
   },
   {
     icon: (
@@ -85,8 +85,8 @@ const CONTACT_INFO = [
       </svg>
     ),
     label: "Location",
-    value: "Plot No. 10, New A - 73, Kapra Colony, Behind Aggarwal Dhramshala, Air Force Road, NIT Jawahar Colony Faridabad, Faridabad - 121005, Haryana, India",
-    href: "https://maps.google.com/?q=Indian+Hydraulic+Works,+Air+Force+Road,+Jawahar+Colony,+Faridabad",
+    value: process.env.NEXT_PUBLIC_CONTACT_ADDRESS || "Plot No. 10, New A - 73, Kapra Colony, Behind Aggarwal Dhramshala, Air Force Road, NIT Jawahar Colony Faridabad, Faridabad - 121005, Haryana, India",
+    href: process.env.NEXT_PUBLIC_MAPS_LINK || "https://maps.google.com/?q=Indian+Hydraulic+Works,+Air+Force+Road,+Jawahar+Colony,+Faridabad",
   },
 ];
 
@@ -249,14 +249,14 @@ ${formState.message}`;
             className="lg:col-span-3"
           >
             <div
-              className="p-6 sm:p-8 rounded-2xl bg-[var(--surface)] border border-[var(--border-color)] transition-all duration-300"
+              className="h-full flex flex-col p-6 sm:p-8 rounded-2xl bg-[var(--surface)] border border-[var(--border-color)] transition-all duration-300"
               style={{ boxShadow: "var(--card-shadow)" }}
             >
               <h3 className="text-xl font-heading font-bold text-[var(--text-primary)] mb-6">
                 Request a Free Quote
               </h3>
 
-              <form onSubmit={handleSubmit} className="space-y-5">
+              <form onSubmit={handleSubmit} className="flex flex-col flex-grow space-y-5">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   <motion.div animate={errors.name ? { x: [-10, 10, -10, 10, 0], transition: { duration: 0.4 } } : {}}>
                     <label htmlFor="contact-name" className="block text-sm font-semibold text-[var(--text-secondary)] mb-2">
@@ -312,7 +312,7 @@ ${formState.message}`;
                   {errors.phone && <p className="text-red-500 text-xs mt-1.5 font-medium">{errors.phone}</p>}
                 </motion.div>
 
-                <motion.div animate={errors.message ? { x: [-10, 10, -10, 10, 0], transition: { duration: 0.4 } } : {}}>
+                <motion.div animate={errors.message ? { x: [-10, 10, -10, 10, 0], transition: { duration: 0.4 } } : {}} className="flex-grow flex flex-col">
                   <label htmlFor="contact-message" className="block text-sm font-semibold text-[var(--text-secondary)] mb-2">
                     Project Details <span className="text-red-500">*</span>
                   </label>
@@ -324,12 +324,12 @@ ${formState.message}`;
                       setFormState({ ...formState, message: e.target.value });
                       if (errors.message) setErrors({ ...errors, message: null });
                     }}
-                    className={errors.message ? "border-red-500/50 focus:border-red-500 focus:ring-red-500/20" : ""}
+                    className={`flex-grow resize-none ${errors.message ? "border-red-500/50 focus:border-red-500 focus:ring-red-500/20" : ""}`}
                   />
                   {errors.message && <p className="text-red-500 text-xs mt-1.5 font-medium">{errors.message}</p>}
                 </motion.div>
 
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-4 mt-auto pt-2">
                   <Button
                     type="submit"
                     variant="primary"
@@ -439,9 +439,24 @@ ${formState.message}`;
               {/* Emergency note */}
               <div className="mt-5 p-3 rounded-xl bg-amber-500/10 dark:bg-amber-500/15 border border-amber-500/20">
                 <p className="text-xs text-amber-700 dark:text-amber-400 font-semibold">
-                  🔧 Emergency repairs available 24/7 — call our hotline for urgent service.
+                  🔧 Emergency repairs available — call our hotline for urgent service.
                 </p>
               </div>
+            </div>
+
+            {/* Verified Platforms */}
+            <div
+              className="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--border-color)] transition-all duration-300 flex items-center justify-center sm:justify-start gap-3"
+              style={{ boxShadow: "var(--card-shadow)" }}
+            >
+              <div className="w-8 h-8 rounded-full bg-green-500/10 flex items-center justify-center shrink-0">
+                <svg className="w-5 h-5 text-green-500" viewBox="0 0 24 24" fill="none">
+                  <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </div>
+              <p className="text-sm font-semibold text-[var(--text-primary)]">
+                Verified on IndiaMart, JustDial & TradeIndia
+              </p>
             </div>
           </motion.div>
         </div>

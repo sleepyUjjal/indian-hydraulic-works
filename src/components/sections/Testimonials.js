@@ -63,7 +63,12 @@ export default function Testimonials() {
   };
 
   return (
-    <section className="relative py-24 sm:py-8 overflow-hidden bg-[var(--background)]">
+
+    <section 
+      id="testimonials"
+      aria-label="Client Testimonials"
+      className="relative py-24 sm:py-8 overflow-hidden bg-[var(--background)]"
+    >
       {/* Decorative Background */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-trust-blue/[0.03] dark:bg-trust-blue/[0.05] rounded-full blur-[120px] pointer-events-none" />
 

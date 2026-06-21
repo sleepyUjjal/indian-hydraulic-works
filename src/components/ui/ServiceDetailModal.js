@@ -126,7 +126,7 @@ const SERVICE_DETAILS = {
       "Filter and strainer servicing",
       "Pressure and flow diagnostics",
       "Condition monitoring reports",
-      "24/7 emergency breakdown support",
+      "Emergency breakdown support",
     ],
     brands: ["All Makes & Models", "Multi-brand Support"],
     turnaround: "Ongoing / As Scheduled",

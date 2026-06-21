@@ -371,12 +371,12 @@ export default function Hero() {
               transition={{ duration: 0.7, delay: 0.05 }}
               className="text-4xl sm:text-5xl md:text-6xl lg:text-[3.5rem] xl:text-6xl font-heading font-bold dark:text-white text-deep-navy leading-[1.1] tracking-tight"
             >
-              Precision{" "}
+              Expert{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r dark:from-sky-300 dark:via-blue-400 dark:to-trust-blue from-trust-blue via-blue-600 to-sky-600">
-                Hydraulic
+                Hydraulic Pump
               </span>
               <br />
-              Pumps &amp; Machinery
+              Repair &amp; Services
             </motion.h1>
 
             <motion.p
