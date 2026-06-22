@@ -10,7 +10,7 @@ import { useEffect } from "react";
    Uses existing product images from /public/products/
    ───────────────────────────────────────────── */
 const SERVICE_DETAILS = {
-  "Pump Repairing": {
+  "Hydraulic Pump Repairing": {
     heroImage: "/products/hydraulic-pump-v3.webp",
     gallery: [
       { src: "/products/rexroth-hydraulic-pump-v3.webp", label: "Rexroth Hydraulic Pump" },
@@ -31,7 +31,7 @@ const SERVICE_DETAILS = {
     turnaround: "2–5 working days",
     relatedProducts: ["rexroth-hydraulic-pump-pmp1", "gear-pump-pmp5", "hydraulic-axial-piston-pump-pmp3"],
   },
-  "Motor Repairing": {
+  "Hydraulic Motor Repairing": {
     heroImage: "/products/hydraulic-motor-v3.webp",
     gallery: [
       { src: "/products/intermot-hydraulic-motor-v3.webp", label: "Intermot Motor" },
@@ -51,7 +51,7 @@ const SERVICE_DETAILS = {
     turnaround: "3–7 working days",
     relatedProducts: ["hydraulic-motor-mtr1", "intermot-hydraulic-motor-mtr2"],
   },
-  "Valve Repairing": {
+  "Hydraulic Valve Repairing": {
     heroImage: "/products/hydraulic-valve-v3.webp",
     gallery: [
       { src: "/products/hydraulic-valve-v3.webp", label: "Directional Control Valve" },

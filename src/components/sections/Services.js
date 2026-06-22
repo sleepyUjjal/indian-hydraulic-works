@@ -27,7 +27,7 @@ const SERVICES = [
     ),
   },
   {
-    title: "HydraulicMotor Repairing",
+    title: "Hydraulic Motor Repairing",
     description:
       "Complete hydraulic motor overhaul — from seal replacement to shaft reconditioning — with precision torque testing.",
     accent: "#f59e0b",
