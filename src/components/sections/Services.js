@@ -13,7 +13,7 @@ import ServiceDetailModal from "@/components/ui/ServiceDetailModal";
    ───────────────────────────────────────────── */
 const SERVICES = [
   {
-    title: "Pump Repairing",
+    title: "Hydraulic Pump Repairing",
     description:
       "Expert diagnosis and repair of all hydraulic pump types — gear, vane, and piston — restoring factory-grade performance.",
     accent: "#3b82f6",
@@ -27,7 +27,7 @@ const SERVICES = [
     ),
   },
   {
-    title: "Motor Repairing",
+    title: "HydraulicMotor Repairing",
     description:
       "Complete hydraulic motor overhaul — from seal replacement to shaft reconditioning — with precision torque testing.",
     accent: "#f59e0b",
@@ -42,7 +42,7 @@ const SERVICES = [
     ),
   },
   {
-    title: "Valve Repairing",
+    title: "Hydraulic Valve Repairing",
     description:
       "Precision reconditioning of directional, pressure, and flow control valves — ensuring leak-free, reliable operation.",
     accent: "#22c55e",
@@ -184,7 +184,7 @@ function ServiceCard({ service, index, onLearnMore }) {
         </p>
 
         {/* Learn more link */}
-        <div 
+        <div
           className="flex items-center gap-2 text-sm font-semibold transition-all duration-300 opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0"
           style={{ color: service.accent }}
         >
